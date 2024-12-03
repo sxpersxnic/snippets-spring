@@ -8,7 +8,8 @@ import java.util.*;
 
 @Getter
 @Setter
-@EqualsAndHashcode(of = "name")
+@EqualsAndHashCode(of = "name")
+@Table(name = "tags")
 @Entity
 public class Tag {
 
@@ -17,7 +18,7 @@ public class Tag {
   @Column(name = "id", nullable = false, unique = true)
   private UUID id;
 
-  @ManyToOne
+  @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
   @JoinColumn(name = "author_id")
   private Profile profile;
 
@@ -30,10 +31,10 @@ public class Tag {
   @Column(name = "color", nullable = false)
   private String color;
   
-  @Column(name = "created_at", insertAble = false)
+  @Column(name = "created_at", insertable = false, updatable = false)
   private LocalDateTime createdAt;
   
-  @Column(name = "updated_at", insertAble = false)
+  @Column(name = "updated_at", insertable = false)
   private LocalDateTime updatedAt;
 
 }

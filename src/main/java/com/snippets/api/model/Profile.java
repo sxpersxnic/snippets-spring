@@ -8,7 +8,8 @@ import java.util.*;
 
 @Getter
 @Setter
-@EqualsAndHashcode(of = "username")
+@EqualsAndHashCode(of = "username")
+@Table(name = "profiles")
 @Entity
 public class Profile {
 
@@ -17,9 +18,15 @@ public class Profile {
   @Column(name = "id", nullable = false, unique = true)
   private UUID id;
 
-  @ManyToOne
+  @OneToOne
   @JoinColumn(name = "user_id")
   private User user;
+
+  @OneToMany(mappedBy = "profile")
+  private Set<Snippet> snippets = new LinkedHashSet<>();
+
+  @OneToMany(mappedBy = "profile")
+  private Set<Tag> tags = new LinkedHashSet<>();
   
   @Column(name = "username", nullable = false, unique = true)
   private String username;
@@ -27,10 +34,10 @@ public class Profile {
   @Column(name = "photo")
   private String photo;
   
-  @Column(name = "created_at", insertAble = false)
+  @Column(name = "created_at", insertable = false, updatable = false)
   private LocalDateTime createdAt;
   
-  @Column(name = "updated_at", insertAble = false)
+  @Column(name = "updated_at", insertable = false)
   private LocalDateTime updatedAt;
 
 }

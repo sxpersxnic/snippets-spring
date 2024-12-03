@@ -8,36 +8,37 @@ import java.util.*;
 
 @Getter
 @Setter
-@EqualsAndHashcode(of = "title")
+@EqualsAndHashCode(of = "title")
+@Table(name = "snippets")
 @Entity
-public class Tag {
+public class Snippet {
 
-  @Id 
-  @GeneratedValue(strategy = GenerationType.UUID)
-  @Column(name = "id", nullable = false, unique = true)
-  private UUID id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "id", nullable = false, unique = true)
+    private UUID id;
 
-  @ManyToOne
-  @JoinColumn(name = "author_id")
-  private Profile profile;
+    @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+    @JoinColumn(name = "author_id")
+    private Profile profile;
 
-  @ManyToMany
-  @JoinTable(name = "snippet_tags", joinCloumns = @JoinColumn(name = "snippet_id"), inverseJoinColumns = @JoinColumn(name = "tag_id"))
-  private Set<Tag> tags = new LinkedHashSet<>();
-  
-  @Column(name = "title", nullable = false)
-  private String title;
-  
-  @Column(name = "content", nullable = false)
-  private String content;
-  
-  @Column(name = "language", nullable = false)
-  private String language;
-  
-  @Column(name = "created_at", insertAble = false)
-  private LocalDateTime createdAt;
-  
-  @Column(name = "updated_at", insertAble = false)
-  private LocalDateTime updatedAt;
+    @ManyToMany
+    @JoinTable(name = "snippet_tags", joinColumns = @JoinColumn(name = "snippet_id"), inverseJoinColumns = @JoinColumn(name = "tag_id"))
+    private Set<Tag> tags;
+
+    @Column(name = "title", nullable = false)
+    private String title;
+
+    @Column(name = "content", nullable = false)
+    private String content;
+
+    @Column(name = "language", nullable = false)
+    private String language;
+
+    @Column(name = "created_at", insertable = false, updatable = false)
+    private LocalDateTime createdAt;
+
+    @Column(name = "updated_at", insertable = false)
+    private LocalDateTime updatedAt;
 
 }

@@ -1,10 +1,11 @@
 package com.snippets.api.dto.request;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 @Getter
 @Setter
-@EqualsAndHashcode(of = "email")
+@EqualsAndHashCode(of = "email")
 public class UserRequestDTO {
 
   @NotBlank(message = "Email must not be blank!")

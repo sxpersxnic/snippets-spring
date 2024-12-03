@@ -1,17 +1,20 @@
 package com.snippets.api.model;
 
 import jakarta.persistence.*;
-import lombok.*;
-import java.lang.*;
-import java.util.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.util.UUID;
 
 @Getter
 @Setter
-@EqualsAndHashcode(of = "email")
+@EqualsAndHashCode(of = "email")
+@Table(name = "users")
 @Entity
 public class User {
 
-  @Id 
+  @Id
   @GeneratedValue(strategy = GenerationType.UUID)
   @Column(name = "id", nullable = false, unique = true)
   private UUID id;
@@ -21,6 +24,4 @@ public class User {
 
   @Column(name = "password_hash", nullable = false)
   private String password;
-
-  private Profile profile;
 }

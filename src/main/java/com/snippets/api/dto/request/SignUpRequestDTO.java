@@ -1,10 +1,15 @@
 package com.snippets.api.dto.request;
 
-import lombok.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 @Setter
-@EqualsAndHashcode(of = "email")
+@EqualsAndHashCode(of = "email")
 public class SignUpRequestDTO {
 
   @NotBlank(message = "Username must not be blank!")
