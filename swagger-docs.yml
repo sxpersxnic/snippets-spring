@@ -1,0 +1,607 @@
+openapi: 3.0.1
+info:
+  title: Snippets - Java Spring API
+  description: API documentation for the Snippets API
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+    description: Local server
+paths:
+  /users:
+    get:
+      summary: Get all users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserResponseDTO'
+  /users/get/{id}:
+    get:
+      summary: Get user by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponseDTO'
+        '404':
+          description: Not Found
+        '401':
+          description: Unauthorized
+
+  /users/post:
+    post:
+      summary: Create a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRequestDTO'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponseDTO'
+        '400':
+          description: Bad Request 
+        '401':
+          description: Unauthorized
+        '409':
+          description: Conflict
+
+  /users/patch/{id}:
+    patch:
+      summary: Update user by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRequestDTO'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponseDTO'
+        '404':
+          description: Not Found
+        '401':
+          description: Unauthorized
+        '400':
+          description: Bad Request
+        '409':
+          description: Conflict
+          
+  /users/delete/{id}:
+    delete:
+      summary: Delete user by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+  /profiles:
+    get:
+      summary: Get all profiles
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProfileResponseDTO'
+  /profiles/get/{id}:
+    get:
+      summary: Get profile by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileResponseDTO'
+        '404':
+          description: Not Found
+        '401':
+          description: Unauthorized
+
+  /profiles/post:
+    post:
+      summary: Create a new profile
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProfileRequestDTO'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileResponseDTO'
+        '400':
+          description: Bad Request 
+        '401':
+          description: Unauthorized
+        '409':
+          description: Conflict
+
+  /profiles/patch/{id}:
+    patch:
+      summary: Update profile by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProfileRequestDTO'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileResponseDTO'
+        '404':
+          description: Not Found
+        '401':
+          description: Unauthorized
+        '400':
+          description: Bad Request
+        '409':
+          description: Conflict
+          
+  /profiles/delete/{id}:
+    delete:
+      summary: Delete profile by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+
+  /snippets:
+    get:
+      summary: Get all snippets
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SnippetResponseDTO'
+  /snippets/get/{id}:
+    get:
+      summary: Get snippet by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SnippetResponseDTO'
+        '404':
+          description: Not Found
+        '401':
+          description: Unauthorized
+
+  /snippets/post:
+    post:
+      summary: Create a new snippet
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SnippetRequestDTO'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SnippetResponseDTO'
+        '400':
+          description: Bad Request 
+        '401':
+          description: Unauthorized
+        '409':
+          description: Conflict
+
+  /snippets/patch/{id}:
+    patch:
+      summary: Update snippet by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SnippetRequestDTO'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SnippetResponseDTO'
+        '404':
+          description: Not Found
+        '401':
+          description: Unauthorized
+        '400':
+          description: Bad Request
+        '409':
+          description: Conflict
+          
+  /snippets/delete/{id}:
+    delete:
+      summary: Delete snippet by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+
+  /tags:
+    get:
+      summary: Get all tags
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TagResponseDTO'
+  /tags/get/{id}:
+    get:
+      summary: Get tag by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TagResponseDTO'
+        '404':
+          description: Not Found
+        '401':
+          description: Unauthorized
+
+  /tags/post:
+    post:
+      summary: Create a new tag
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TagRequestDTO'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TagResponseDTO'
+        '400':
+          description: Bad Request 
+        '401':
+          description: Unauthorized
+        '409':
+          description: Conflict
+
+  /tags/patch/{id}:
+    patch:
+      summary: Update tag by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TagRequestDTO'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TagResponseDTO'
+        '404':
+          description: Not Found
+        '401':
+          description: Unauthorized
+        '400':
+          description: Bad Request
+        '409':
+          description: Conflict
+
+  /tags/delete/{id}:
+    delete:
+      summary: Delete tag by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+  
+  /auth/signup:
+    post:
+      summary: Create an new account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignUpRequestDTO'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignUpResponseDTO'
+        '400':
+          description: Bad Request 
+        '409':
+          description: Conflict
+
+  /auth/signin:
+    post:
+      summary: Sign in to account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignInRequestDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignInResponseDTO'
+        '400':
+          description: Bad Request 
+        '409':
+          description: Conflict
+        '404':
+          description: Not Found
+
+components:
+
+  schemas:
+
+    UserRequestDTO:
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+
+    UserResponseDTO:
+      type: object
+      properties:
+        id:
+          type: string 
+        email:
+          type: string
+
+    SignUpRequestDTO:
+      type: object
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+        password: 
+          type: string
+          
+    SignUpResponseDTO:
+      type: object
+      properties:
+        id:
+          type: string 
+        email:
+          type: string
+        username:
+          type: string
+
+    SignInRequestDTO:
+      type: object
+      properties:
+        email:
+          type: string
+        password: 
+          type: string
+
+    SignInResponseDTO:
+      type: object
+      properties:
+        id:
+          type: string 
+        email:
+          type: string
+        token:
+          type: string
+          
+    ProfileRequestDTO:
+      type: object
+      properties:
+        username:
+          type: string
+        photo:
+          type: string
+
+    ProfileResponseDTO:
+      type: object
+      properties:
+        id: 
+          type: string
+        user_id:
+          type: string
+        username: 
+          type: string
+        photo:
+          type: string
+        createdAt:
+          type: string
+          format: date
+        updatedAt:
+          type: string
+          format: date
+    
+    SnippetRequestDTO:
+      type: object
+      properties:
+        title:
+          type: string
+        content:
+          type: string
+        language:
+          type: string
+
+    SnippetResponseDTO:
+      type: object
+      properties:
+        id: 
+          type: string
+        user_id:
+          type: string
+        title: 
+          type: string
+        content:
+          type: string
+        language:
+          type: string
+        createdAt:
+          type: string
+          format: date
+        updatedAt:
+          type: string
+          format: date
+
+    TagRequestDTO:
+      type: object
+      properties:
+        name:
+          type: string
+        color:
+          type: string
+
+    TagResponseDTO:
+      type: object
+      properties:
+        id: 
+          type: string
+        author_id:
+          type: string
+        name: 
+          type: string
+        color:
+          type: string
+        createdAt:
+          type: string
+          format: date
+        updatedAt:
+          type: number
+          format: date
