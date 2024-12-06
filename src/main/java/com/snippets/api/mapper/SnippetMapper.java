@@ -4,25 +4,23 @@ import com.snippets.api.dto.request.SnippetRequestDTO;
 import com.snippets.api.dto.response.SnippetResponseDTO;
 import com.snippets.api.model.Snippet;
 import com.snippets.api.model.Tag;
-import java.util.List;
-
-import java.util.UUID;
 
 public class SnippetMapper {
     public static SnippetResponseDTO toDTO(Snippet src) {
         SnippetResponseDTO dto = new SnippetResponseDTO();
 
         dto.setId(src.getId());
-        dto.setAuthorId(src.getProfile().getId());
+        dto.setTagIds(
+                src.getTags()
+                   .stream()
+                   .map(Tag::getId)
+                   .toList()
+        );
 
+        dto.setAuthorId(src.getProfile().getId());
         dto.setTitle(src.getTitle());
         dto.setContent(src.getContent());
         dto.setLanguage(src.getLanguage());
-
-        List<UUID> tagIds = src.getTags().stream().map(Tag::getId).toList();
-
-        dto.setTagIds(tagIds);
-
         dto.setCreatedAt(src.getCreatedAt());
         dto.setUpdatedAt(src.getUpdatedAt());
 

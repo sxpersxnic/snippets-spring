@@ -14,5 +14,4 @@ public class SignUpResponseDTO {
 
     private String email;
     private String username;
-
 }

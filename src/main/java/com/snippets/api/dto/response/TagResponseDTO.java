@@ -18,7 +18,7 @@ public class TagResponseDTO {
     private String name;
     private String color;
 
-    private List<UUID> tagIds;
+    private List<UUID> snippetIds;
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;

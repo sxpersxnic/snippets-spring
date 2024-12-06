@@ -8,7 +8,6 @@ import com.snippets.api.model.Tag;
 
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 public class ProfileMapper {
 

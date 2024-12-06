@@ -6,6 +6,8 @@ import java.lang.*;
 import java.time.LocalDateTime;
 import java.util.*;
 
+import static com.snippets.api.lib.constants.Defaults.DEFAULT_PFP;
+
 @Getter
 @Setter
 @EqualsAndHashCode(of = "username")
@@ -39,5 +41,9 @@ public class Profile {
   
   @Column(name = "updated_at", insertable = false)
   private LocalDateTime updatedAt;
+
+  public void setDefaultPhoto() {
+    this.photo = DEFAULT_PFP;
+  }
 
 }

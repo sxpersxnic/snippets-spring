@@ -7,13 +7,9 @@ import java.util.List;
 public interface IService<E, ID> {
     public List<E> findAll();
     public E findById(ID id);
-
-    @Transactional
     public E findByIdForUpdate(ID id);
-    public E create(E entity);
-    public E update(E changing, ID existing);
+    public E create(E e);
+    public E update(E changing, ID id);
     public void delete(ID id);
-
-    @Transactional
     void merge(E existing, E changing);
 }
