@@ -1,6 +1,46 @@
-# snippets-spring
+# Snippets Spring API
 
 Java Spring API for Snippets project
+
+## Logical flows
+
+## Usage
+
+When trying to use the API in your application, use this map of requests and responses, the API offers:
+
+### Authentication
+
+Before you can access any other ressources, you will need to authenticate, this way we make sure to protect your ressources.
+
+#### Sign Up
+
+##### Endpoint:
+- URI: /auth/signup
+- Http-Method: POST
+
+##### Request
+
+##### Response
+
+#### Sign In **POST**
+
+##### Endpoint:
+- URI: /auth/signin
+- Http-Method: POST
+
+##### Request
+
+##### Response
+
+### User
+
+#### Find all
+
+### Profile
+
+### Snippet
+
+### Tag
 
 ## Database
 
